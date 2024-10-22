@@ -1,7 +1,9 @@
+// app/layout.tsx
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-
+import { Providers } from '../components/Providers'; // 클라이언트 프로바이더 import
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +31,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
-        {children}
+        <Providers> {/* 클라이언트 프로바이더로 감싸기 */}
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -18,6 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { cn } from "@/lib/utils"
 
 export function TeamSwitcher({
   teams,
@@ -28,9 +29,9 @@ export function TeamSwitcher({
     plan: string
   }[]
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile, state } = useSidebar()
   const [activeTeam, setActiveTeam] = React.useState(teams[0])
-
+  console.log(state) // collapsed , expanded
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -43,13 +44,16 @@ export function TeamSwitcher({
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <activeTeam.logo className="size-4" />
               </div>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">
-                  {activeTeam.name}
-                </span>
-                <span className="truncate text-xs">{activeTeam.plan}</span>
+              <div className={cn(state === "collapsed" ? 'hidden' : '')}>
+
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">
+                    {activeTeam.name}
+                  </span>
+                  <span className="truncate text-xs">{activeTeam.plan}</span>
+                </div>
               </div>
-              <ChevronsUpDown className="ml-auto" />
+              <ChevronsUpDown className={cn("ml-auto ", state === "collapsed" ? 'hidden' : '')} />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
