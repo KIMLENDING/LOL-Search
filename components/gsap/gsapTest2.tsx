@@ -44,14 +44,11 @@ const GaspTest2 = () => {
     // resize 이벤트에 디바운싱 적용
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-
         const handleResize = () => {
             clearTimeout(timeoutId);
             timeoutId = setTimeout(animateBoxes, 250); // 250ms 디바운스
         };
-
         window.addEventListener('resize', handleResize);
-
         return () => {
             window.removeEventListener('resize', handleResize);
             clearTimeout(timeoutId);
