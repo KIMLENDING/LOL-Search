@@ -13,7 +13,7 @@ const GaspTest1 = () => {
 
     // useGSAP로 애니메이션 초기 실행
     useGSAP(() => {
-        const ctx = gsap.context(animateBoxes, container); // container 하위의 요소에 대해 애니메이션 적용
+        const ctx = gsap.context(animateBoxes, container1); // container 하위의 요소에 대해 애니메이션 적용
         return () => ctx.revert();
     }, { scope: container1, dependencies: [animateBoxes] });
 
